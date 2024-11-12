@@ -11,6 +11,7 @@ class CshuwenDlg : public CDialogEx
 // 构造
 public:
 	CshuwenDlg(CWnd* pParent = nullptr);	// 标准构造函数
+	CBrush m_brBackground; // 背景画刷
 
 // 对话框数据
 #ifdef AFX_DESIGN_TIME
@@ -27,6 +28,7 @@ protected:
 
 	// 生成的消息映射函数
 	virtual BOOL OnInitDialog();
+	afx_msg HBRUSH OnCtlColor(CDC* pDC, CWnd* pWnd, UINT nCtlColor); // 
 	afx_msg void OnSysCommand(UINT nID, LPARAM lParam);
 	afx_msg void OnPaint();
 	afx_msg HCURSOR OnQueryDragIcon();

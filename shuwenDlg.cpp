@@ -51,7 +51,8 @@ END_MESSAGE_MAP()
 
 
 CshuwenDlg::CshuwenDlg(CWnd* pParent /*=nullptr*/)
-	: CDialogEx(IDD_SHUWEN_DIALOG, pParent)
+	: CDialogEx(IDD_SHUWEN_DIALOG, pParent), m_brBackground(RGB(0, 0, 0))  // 黑色背景
+	//: CDialogEx(IDD_SHUWEN_DIALOG, pParent)
 {
 	m_hIcon = AfxGetApp()->LoadIcon(IDR_MAINFRAME);
 }
@@ -62,6 +63,7 @@ void CshuwenDlg::DoDataExchange(CDataExchange* pDX)
 }
 
 BEGIN_MESSAGE_MAP(CshuwenDlg, CDialogEx)
+	ON_WM_CTLCOLOR()
 	ON_WM_SYSCOMMAND()
 	ON_WM_PAINT()
 	ON_WM_QUERYDRAGICON()
@@ -102,6 +104,7 @@ BOOL CshuwenDlg::OnInitDialog()
 	ShowWindow(SW_MAXIMIZE);
 
 	// TODO: 在此添加额外的初始化代码
+	SetBackgroundColor(RGB(0, 0, 0));  // 设置窗口背景色为黑色
 
 	return TRUE;  // 除非将焦点设置到控件，否则返回 TRUE
 }
@@ -155,3 +158,17 @@ HCURSOR CshuwenDlg::OnQueryDragIcon()
 	return static_cast<HCURSOR>(m_hIcon);
 }
 
+HBRUSH CshuwenDlg::OnCtlColor(CDC* pDC, CWnd* pWnd, UINT nCtlColor)
+{
+	HBRUSH hbr = CDialogEx::OnCtlColor(pDC, pWnd, nCtlColor);
+
+	if (nCtlColor == CTLCOLOR_DLG || nCtlColor == CTLCOLOR_STATIC)
+	{
+		// 设置对话框和静态文本的背景色为黑色，文本色为白色
+		pDC->SetBkColor(RGB(0, 0, 0));
+		pDC->SetTextColor(RGB(255, 255, 255));
+		return (HBRUSH)(m_brBackground);
+	}
+
+	return hbr;
+}
