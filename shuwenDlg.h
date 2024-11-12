@@ -12,6 +12,7 @@ class CshuwenDlg : public CDialogEx
 public:
 	CshuwenDlg(CWnd* pParent = nullptr);	// 标准构造函数
 	CBrush m_brBackground; // 背景画刷
+	CListBox m_NavigationList; // 导航列表
 
 // 对话框数据
 #ifdef AFX_DESIGN_TIME

@@ -43,12 +43,23 @@ void CAboutDlg::DoDataExchange(CDataExchange* pDX)
 }
 
 BEGIN_MESSAGE_MAP(CAboutDlg, CDialogEx)
+	//ON_LBN_SELCHANGE(IDC_NAVIGATION_LIST, &CshuwenDlg::OnLbnSelchangeNavigationList)
 END_MESSAGE_MAP()
 
 
 // CshuwenDlg 对话框
-
-
+/*
+void CshuwenDlg::OnLbnSelchangeNavigationList()
+{
+	int nSel = m_NavigationList.GetCurSel();
+	if (nSel != LB_ERR)
+	{
+		CString strItem;
+		m_NavigationList.GetText(nSel, strItem);
+		AfxMessageBox(strItem); // 示例：弹出所选项的消息框
+	}
+}
+*/
 
 CshuwenDlg::CshuwenDlg(CWnd* pParent /*=nullptr*/)
 	: CDialogEx(IDD_SHUWEN_DIALOG, pParent), m_brBackground(RGB(0, 0, 0))  // 黑色背景
@@ -105,9 +116,16 @@ BOOL CshuwenDlg::OnInitDialog()
 
 	// TODO: 在此添加额外的初始化代码
 	SetBackgroundColor(RGB(0, 0, 0));  // 设置窗口背景色为黑色
+	// 创建导航列表框
+	m_NavigationList.Create(LBS_NOTIFY | WS_VISIBLE | WS_CHILD | WS_VSCROLL,
+		CRect(10, 10, 150, 400), this, IDC_NAVIGATION_LIST);
+	m_NavigationList.AddString(_T("选项 1"));
+	m_NavigationList.AddString(_T("选项 2"));
+	m_NavigationList.AddString(_T("选项 3"));
 
 	return TRUE;  // 除非将焦点设置到控件，否则返回 TRUE
 }
+
 
 void CshuwenDlg::OnSysCommand(UINT nID, LPARAM lParam)
 {
@@ -172,3 +190,4 @@ HBRUSH CshuwenDlg::OnCtlColor(CDC* pDC, CWnd* pWnd, UINT nCtlColor)
 
 	return hbr;
 }
+

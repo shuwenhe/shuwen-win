@@ -7,6 +7,8 @@
 #define IDD_ABOUTBOX					100
 #define IDS_ABOUTBOX					101
 #define IDD_SHUWEN_DIALOG				102
+#define IDC_NAVIGATION_LIST 1001 // 确保这个 ID 唯一
+
 
 // 新对象的下一组默认值
 //
